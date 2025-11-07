@@ -1,0 +1,34 @@
+{
+  "intents": [
+    {
+      "tag": "greetings",
+      "patterns": ["hello", "hi", "hey", "good morning", "good evening"],
+      "responses": ["Hello! How can I help you today? 😊", "Hi there! Ask me anything about the college."]
+    },
+    {
+      "tag": "admissions",
+      "patterns": ["how do I apply for admission", "admission process", "application form"],
+      "responses": ["Admissions info: Visit https://college.example.edu/admissions or contact the admission cell."]
+    },
+    {
+      "tag": "fees",
+      "patterns": ["fee structure", "tuition cost", "how much are the fees"],
+      "responses": ["Tuition fee is around ₹100,000 per year. More info at /fees."]
+    },
+    {
+      "tag": "timetable",
+      "patterns": ["timetable", "class schedule", "lecture timings"],
+      "responses": ["Timetables are released on the student portal 2 weeks before the semester starts."]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["bye", "goodbye", "see you later"],
+      "responses": ["Goodbye! Have a great day! 👋"]
+    },
+    {
+      "tag": "fallback",
+      "patterns": [],
+      "responses": ["Sorry, I didn’t get that. Could you rephrase?"]
+    }
+  ]
+}
