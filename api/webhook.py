@@ -1,36 +1,45 @@
-from flask import Flask, request
-import requests, os
-
-app = Flask(__name__)
+from http.server import BaseHTTPRequestHandler
+import json
+import requests
+import os
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 API_URL = os.getenv("API_URL")
 
-@app.route("/api/webhook", methods=["POST"])
-def webhook():
-    data = request.get_json()
-    if not data or "message" not in data:
-        return {"ok": True}  # ignore non-message updates
 
-    chat_id = data["message"]["chat"]["id"]
-    text = data["message"].get("text", "")
+class handler(BaseHTTPRequestHandler):
+    def do_POST(self):
+        content_length = int(self.headers.get("Content-Length", 0))
+        body = self.rfile.read(content_length)
+        data = json.loads(body.decode("utf-8"))
 
-    # Send text to your backend (the Flask app)
-    try:
-        res = requests.post(API_URL, json={"message": text})
-        if res.status_code == 200:
-            bot_reply = res.json().get("response", "Sorry, I didn't understand that.")
-        else:
-            bot_reply = f"⚠️ Server error {res.status_code}"
-    except Exception as e:
-        bot_reply = f"❌ API unreachable: {e}"
+        message = data.get("message", {}).get("text", "")
+        chat_id = data.get("message", {}).get("chat", {}).get("id", "")
 
-    # Send reply back to user
-    requests.post(f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage", json={
-        "chat_id": chat_id,
-        "text": bot_reply
-    })
-    return {"ok": True}
+        if message and chat_id:
+            try:
+                # Send the message to your Flask backend
+                res = requests.post(API_URL, json={"message": message})
+                if res.status_code == 200:
+                    reply = res.json().get("response", "Sorry, I didn’t understand that.")
+                else:
+                    reply = f"⚠️ API error {res.status_code}"
+            except Exception as e:
+                reply = f"❌ Could not reach backend: {e}"
 
-if __name__ == "__main__":
-    app.run()
+            # Send the response back to Telegram
+            requests.post(
+                f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
+                json={"chat_id": chat_id, "text": reply},
+            )
+
+        self.send_response(200)
+        self.send_header("Content-Type", "application/json")
+        self.end_headers()
+        self.wfile.write(json.dumps({"ok": True}).encode("utf-8"))
+
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header("Content-Type", "application/json")
+        self.end_headers()
+        self.wfile.write(json.dumps({"ok": True, "message": "Webhook is active"}).encode("utf-8"))
