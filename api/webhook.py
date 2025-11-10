@@ -20,7 +20,7 @@ class handler(BaseHTTPRequestHandler):
 
             if message and chat_id:
                 # Send the message to the internal Flask backend (/chat)
-                backend_url = f"https://{os.getenv('VERCEL_URL')}/chat"
+                backend_url = f"https://college-helpdesk-bot-api.vercel.app/chat"
                 res = requests.post(backend_url, json={"message": message})
 
                 if res.status_code == 200:
