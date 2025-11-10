@@ -2,33 +2,202 @@
   "intents": [
     {
       "tag": "greetings",
-      "patterns": ["hello", "hi", "hey", "good morning", "good evening"],
-      "responses": ["Hello! How can I help you today? 😊", "Hi there! Ask me anything about the college."]
+      "patterns": [
+        "hello", "hi", "hey", "good morning", "good evening",
+        "what's up", "yo", "hi there", "anyone there?", "how are you?"
+      ],
+      "responses": [
+        "Hello! How can I help you today? 😊",
+        "Hey there! Need any help with college info?",
+        "Hi! Ask me anything about admissions, fees, or schedules."
+      ]
+    },
+    {
+      "tag": "about_college",
+      "patterns": [
+        "tell me about the college",
+        "what is this college about",
+        "college information",
+        "overview of college",
+        "college details"
+      ],
+      "responses": [
+        "Our college offers high-quality education, experienced faculty, and excellent placement opportunities. You can read more at https://college.example.edu/about-us."
+      ]
     },
     {
       "tag": "admissions",
-      "patterns": ["how do I apply for admission", "admission process", "application form"],
-      "responses": ["Admissions info: Visit https://college.example.edu/admissions or contact the admission cell."]
+      "patterns": [
+        "how do I apply for admission",
+        "admission process",
+        "application form",
+        "eligibility criteria",
+        "admission help",
+        "what is the last date to apply"
+      ],
+      "responses": [
+        "Admissions info is on the college portal. You can apply online at https://college.example.edu/admissions 😊",
+        "The admission process includes online registration, document submission, and fee payment. Visit the admissions page for details."
+      ]
+    },
+    {
+      "tag": "important_dates",
+      "patterns": [
+        "application deadline",
+        "last date to apply",
+        "when does admission close",
+        "exam date",
+        "result date"
+      ],
+      "responses": [
+        "Application deadlines vary by program. For most undergraduate courses, it's August 15. Check the latest updates on the official portal."
+      ]
     },
     {
       "tag": "fees",
-      "patterns": ["fee structure", "tuition cost", "how much are the fees"],
-      "responses": ["Tuition fee is around ₹100,000 per year. More info at /fees."]
+      "patterns": [
+        "tuition fees", "fee structure", "payment options",
+        "how much is the course fee", "scholarships", "installment facility"
+      ],
+      "responses": [
+        "Tuition fees vary by program. Visit https://college.example.edu/fees for the latest details.",
+        "Scholarships and fee installment options are available. Contact the finance office for details."
+      ]
     },
     {
-      "tag": "timetable",
-      "patterns": ["timetable", "class schedule", "lecture timings"],
-      "responses": ["Timetables are released on the student portal 2 weeks before the semester starts."]
+      "tag": "courses",
+      "patterns": [
+        "what courses are available",
+        "list of programs",
+        "undergraduate courses",
+        "postgraduate programs",
+        "computer science course",
+        "engineering courses"
+      ],
+      "responses": [
+        "We offer programs in Engineering, Science, Commerce, and Arts. Visit https://college.example.edu/courses for the full list."
+      ]
+    },
+    {
+      "tag": "library",
+      "patterns": [
+        "library hours", "borrow books", "library access",
+        "online library", "library info", "book borrowing rules"
+      ],
+      "responses": [
+        "The library is open 8 AM–8 PM (Mon–Sat). Online access: https://college.example.edu/library 📚"
+      ]
+    },
+    {
+      "tag": "placement",
+      "patterns": [
+        "placement cell", "placement companies",
+        "average package", "recruiters", "job opportunities"
+      ],
+      "responses": [
+        "Our placement cell connects students with top companies like Infosys, TCS, and Amazon. The average package is ₹5 LPA. Learn more at https://college.example.edu/placement."
+      ]
+    },
+    {
+      "tag": "faculty",
+      "patterns": [
+        "faculty members", "teachers list",
+        "professors", "faculty info", "teaching staff"
+      ],
+      "responses": [
+        "Our faculty members are highly qualified with years of experience in academia and research. You can view profiles at https://college.example.edu/faculty."
+      ]
+    },
+    {
+      "tag": "hostel",
+      "patterns": [
+        "hostel rooms", "apply for hostel", "mess timings",
+        "hostel fees", "accommodation", "hostel facilities"
+      ],
+      "responses": [
+        "Hostel applications are open till Aug 1. Rooms are allotted on a first-come basis. Visit the portal → Hostel section 🏠"
+      ]
+    },
+    {
+      "tag": "transport",
+      "patterns": [
+        "college bus", "transport facilities", "bus routes",
+        "shuttle service", "how to reach campus"
+      ],
+      "responses": [
+        "College buses run 7 AM–10 PM. Timings & routes: https://college.example.edu/transport 🚍"
+      ]
+    },
+    {
+      "tag": "canteen",
+      "patterns": [
+        "canteen menu", "food facilities", "is there a cafeteria",
+        "canteen timings"
+      ],
+      "responses": [
+        "Yes, our canteen offers hygienic food at affordable prices. It's open from 8 AM to 8 PM every day 🍴"
+      ]
+    },
+    {
+      "tag": "events",
+      "patterns": [
+        "upcoming events", "college fest", "cultural programs",
+        "annual function", "technical fest"
+      ],
+      "responses": [
+        "College fests and events are announced on our Events page. Don’t miss the annual tech fest 'TechMania' this December!"
+      ]
+    },
+    {
+      "tag": "contact",
+      "patterns": [
+        "how to contact college", "college phone number",
+        "college address", "email address", "contact info"
+      ],
+      "responses": [
+        "You can reach us at +91-9876543210 or email helpdesk@college.example.edu. Address: 123 College Road, New Delhi."
+      ]
+    },
+    {
+      "tag": "help",
+      "patterns": [
+        "help", "can you help me", "support",
+        "how to use this bot", "help options"
+      ],
+      "responses": [
+        "Sure! I'm your College Helpdesk Bot 🤖. You can ask me about admissions, fees, courses, hostel, or transport. Try 'Tell me about courses' or 'How do I apply for admission?'"
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "thanks", "thank you", "thank you so much",
+        "thanks a lot", "thank u"
+      ],
+      "responses": [
+        "You're welcome! 😊",
+        "Glad to help!",
+        "Anytime! Feel free to ask more questions."
+      ]
     },
     {
       "tag": "goodbye",
-      "patterns": ["bye", "goodbye", "see you later"],
-      "responses": ["Goodbye! Have a great day! 👋"]
+      "patterns": [
+        "bye", "goodbye", "see you later", "catch you later",
+        "talk to you soon"
+      ],
+      "responses": [
+        "Goodbye! Have a great day! 👋",
+        "See you soon! Stay safe and study well!"
+      ]
     },
     {
       "tag": "fallback",
       "patterns": [],
-      "responses": ["Sorry, I didn’t get that. Could you rephrase?"]
+      "responses": [
+        "Sorry, I didn’t get that. Can you rephrase?",
+        "I'm not sure I understand. Try asking about admissions, fees, or hostel facilities."
+      ]
     }
   ]
 }

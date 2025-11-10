@@ -1,31 +1,32 @@
 import json
-import numpy as np
+import random
+import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
-import joblib
 
 # Load intents
-with open("data/intents.json", "r") as f:
-    data = json.load(f)
+with open("data/intents.json", "r", encoding="utf-8") as f:
+    intents = json.load(f)["intents"]
 
-corpus, labels = [], []
+# Prepare training data
+X = []
+y = []
 
-for intent in data["intents"]:
+for intent in intents:
     for pattern in intent["patterns"]:
-        corpus.append(pattern.lower())
-        labels.append(intent["tag"])
+        X.append(pattern.lower())
+        y.append(intent["tag"])
 
-# Vectorize
+# Vectorize text
 vectorizer = TfidfVectorizer()
-X = vectorizer.fit_transform(corpus)
-y = np.array(labels)
+X_vec = vectorizer.fit_transform(X)
 
 # Train model
-model = LogisticRegression()
-model.fit(X, y)
+clf = LogisticRegression(max_iter=1000)
+clf.fit(X_vec, y)
 
 # Save model
 joblib.dump(vectorizer, "models/vectorizer.joblib")
-joblib.dump(model, "models/classifier.joblib")
+joblib.dump(clf, "models/classifier.joblib")
 
-print("✅ Model training complete! Files saved in models/")
+print("✅ Model trained and saved successfully!")
