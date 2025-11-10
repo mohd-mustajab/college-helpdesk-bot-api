@@ -4,8 +4,6 @@ import requests
 import os
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-API_URL = os.getenv("API_URL")
-
 
 class handler(BaseHTTPRequestHandler):
     def do_POST(self):
@@ -18,8 +16,8 @@ class handler(BaseHTTPRequestHandler):
 
         if message and chat_id:
             try:
-                # Send the message to your Flask backend
-                res = requests.post(API_URL, json={"message": message})
+                # since backend is in same repo, just call the internal endpoint
+                res = requests.post("https://college-helpdesk-bot.vercel.app/chat", json={"message": message})
                 if res.status_code == 200:
                     reply = res.json().get("response", "Sorry, I didn’t understand that.")
                 else:
